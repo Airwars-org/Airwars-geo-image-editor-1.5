@@ -43,6 +43,8 @@ h1 {
     background: #27272a;
     color: white;
     margin: 0;
+    font-family: 'Atlas Grotesk Web', sans-serif;
+    font-weight: 500;
 }
 
 .controls {
