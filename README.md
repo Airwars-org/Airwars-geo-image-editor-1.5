@@ -2,16 +2,22 @@
 
 A web-based image annotation tool for creating and editing evidence files with rectangles, polygons, labels, and exact location markers.
 
+## New features
+- Ctrl+z option added
+- Line and lables are smaller
+- Option to rotate rectangles in the Satellite Image mode
+- Rectangle lables can be added on top and bottom
+
 ## Features
 
-- **Upload JPEG Images**: Upload and automatically resize images to 2100px width while maintaining aspect ratio
+- **Upload JPEG or PNG Images**: Upload and automatically resize images to 1260px hight, 1826px width while maintaining aspect ratio
 - **Dual Mode Support**: Satellite and Ground Level image modes with separate annotation layers
-- **Rectangle Annotation**: Click and drag to draw rectangles with customizable labels and dash styles
-- **Polygon Annotation**: Click to add points and create polygons, double-click to finish
+- **Rectangle Annotation**: Click and drag to draw rectangles with customizable labels and dash styles. Rectangle can be rotated when in Satellite image mode
+- **Polyline Annotation**: Click to add points and create polylines, double-click to finish
 - **Label Annotation**: Place letter labels on images
-- **Exact Location Markers**: Add precise location markers with customizable text and glow effects
-- **Red Annotations**: All shapes are drawn with 8px red (#ff0000) lines with no fill
-- **Undo Polygon Points**: Right-click to remove the last point while drawing a polygon
+- **Exact Location Markers**: Add precise location markers with customizable text
+- **Red Annotations**: All shapes are drawn with 6px red (#ff0000) lines with no fill
+- **Undo and Redo**: Undo and Redo with Ctrl+z and Ctrl+Shift+z
 - **Clear All**: Remove all annotations from the current image
 - **Download Image**: Save the annotated image as a JPEG file
 - **Download Edit File**: Export complete editable project files (.awe format) containing all annotations and metadata
@@ -29,11 +35,10 @@ A web-based image annotation tool for creating and editing evidence files with r
 - Release to complete the rectangle
 - Edit the label text and position in the edit panel
 
-### Drawing Polygons
-- Click the **Polygon** button to activate the tool
+### Drawing Polyline
+- Click the **Polyline** button to activate the tool
 - Click on the canvas to add points
 - Double-click to finish and save the polygon
-- Right-click to undo the last point
 
 ### Adding Labels
 - Click the **Label** button
@@ -44,7 +49,6 @@ A web-based image annotation tool for creating and editing evidence files with r
 - Click the **Exact Location** button
 - Click on the canvas to place a marker
 - Edit the text and adjust position in the edit panel
-- Toggle glow effect with the **Glow On** button
 
 ### Switching Modes
 - Use **Satellite Image Mode** and **Ground Level Image Mode** to annotate different views
