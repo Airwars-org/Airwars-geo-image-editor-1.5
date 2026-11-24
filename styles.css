@@ -1,0 +1,273 @@
+@font-face {
+    font-family: 'Atlas Grotesk Web';
+    src: url('Atlas-Grotesk-Web-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Atlas Grotesk Web Regular';
+    src: url('Atlas-Grotesk-Web-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #dbdce0;
+    min-height: 100vh;
+    padding: 20px;
+    zoom: 0.75;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    background: #27272a;
+    color: white;
+    margin: 0;
+}
+
+.controls {
+    padding: 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.control-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.control-group label {
+    font-weight: 500;
+    color: #333;
+    min-width: 120px;
+}
+
+#imageUpload {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    min-width: 200px;
+}
+
+.tool-btn {
+    padding: 10px 20px;
+    background: #a4a6a8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.tool-btn:hover {
+    background: #929496;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(164, 166, 168, 0.4);
+}
+
+.tool-btn:disabled,
+.tool-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    background: #8f9193;
+}
+
+.shortcuts-panel {
+    background: #f0f2f5;
+    border: 1px solid #e1e5e9;
+    border-radius: 6px;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.shortcuts-panel h4 {
+    color: #333;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+}
+
+.shortcuts-panel .shortcut-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(120px, 1fr));
+    gap: 4px 12px;
+    font-size: 0.78em;
+    color: #555;
+    align-items: start;
+}
+
+.shortcuts-panel .shortcut-grid div {
+    line-height: 1.1;
+    min-height: auto;
+}
+
+.shortcuts-panel .shortcut-grid div strong {
+    display: inline-block;
+    margin-bottom: 2px;
+    color: #333;
+}
+
+.shortcuts-panel {
+    padding: 10px 10px 8px;
+}
+
+.shortcuts-panel h4 {
+    margin-bottom: 6px;
+    font-size: 0.88em;
+}
+
+.#satelliteModeBtn,
+#groundModeBtn {
+    font-weight: 700;
+}
+
+.tool-btn.active {    background: #f63f0f;
+    box-shadow: 0 5px 15px rgba(246, 63, 15, 0.4);}
+
+.tool-btn.clear {
+    background: #f63f0f;}
+
+.tool-btn.clear:hover {
+    background: #d9340d;
+}
+
+.tool-btn.download {
+    background: #0084d1;
+}
+
+.tool-btn.download:hover {
+    background: #006fae;
+}
+
+.info-text {
+    margin-top: 10px;
+}
+
+.info {
+    font-size: 13px;
+    color: #666;
+    font-style: italic;
+}
+
+#labelInput,
+#editLabelInput,
+#labelSide,
+#defaultLabelSide {
+    font-size: 14px;
+    padding: 8px;
+    border: 2px solid #a4a6a8;
+    border-radius: 5px;
+    text-transform: uppercase;
+    width: 60px;
+    text-align: center;
+}
+
+#labelSide,
+#defaultLabelSide {
+    width: 110px;
+    text-transform: none;
+}
+
+#rotationInput {
+    width: 180px;
+    min-width: 120px;
+}
+
+#rotationValue {
+    min-width: 40px;
+}
+
+#editPanel {
+    display: grid;
+    grid-template-columns: minmax(190px, max-content) minmax(240px, max-content) minmax(420px, 1fr);
+    align-items: center;
+    column-gap: 12px;
+}
+
+#editPanel .control-group {
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
+#editPanel .control-group label {
+    min-width: auto;
+}
+
+#editPanel > .control-group:last-child {
+    grid-column: 2 / 4;
+}
+
+@media (max-width: 760px) {
+    #editPanel {
+        grid-template-columns: minmax(190px, max-content) minmax(240px, 1fr);
+    }
+
+    #rotationGroup {
+        grid-column: 1 / -1;
+    }
+
+    #editPanel > .control-group:last-child {
+        grid-column: 2;
+    }
+}
+
+.checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    color: #333;
+}
+
+.canvas-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: #fafafa;
+    overflow: auto;
+    min-height: 400px;
+}
+
+#canvas {
+    border: 2px solid #ddd;
+    background: white;
+    cursor: crosshair;
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+#canvas.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
