@@ -2,6 +2,8 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const imageUpload = document.getElementById('imageUpload');
 const fileUpload = document.getElementById('fileUpload');
+const uploadImageBtn = document.getElementById('uploadImageBtn');
+const openFileBtn = document.getElementById('openFileBtn');
 const rectangleBtn = document.getElementById('rectangleBtn');
 const polygonBtn = document.getElementById('polygonBtn');
 const selectBtn = document.getElementById('selectBtn');
@@ -268,7 +270,12 @@ function setToolButtonsEnabled(enabled) {
     satelliteModeBtn.disabled = !enabled;
 }
 
-imageUpload.addEventListener('change', handleImageUpload);
+imageUpload.addEventListener('change', (event) => {
+    handleImageUpload(event.target.files[0]);
+    event.target.value = '';
+});
+uploadImageBtn.addEventListener('click', chooseImageFile);
+openFileBtn.addEventListener('click', chooseProjectFile);
 rectangleBtn.addEventListener('click', () => selectTool('rectangle'));
 polygonBtn.addEventListener('click', () => selectTool('polygon'));
 selectBtn.addEventListener('click', () => selectTool('select'));
@@ -279,7 +286,10 @@ satelliteModeBtn.addEventListener('click', () => switchMode('satellite'));
 clearBtn.addEventListener('click', clearAnnotations);
 downloadBtn.addEventListener('click', downloadImage);
 downloadEditFileBtn.addEventListener('click', downloadEditFile);
-fileUpload.addEventListener('change', handleFileUpload);
+fileUpload.addEventListener('change', (event) => {
+    handleFileUpload(event.target.files[0]);
+    event.target.value = '';
+});
 labelInput.addEventListener('change', handleLabelInput);
 labelInput.addEventListener('input', handleLabelInputRealtime);
 labelInput.addEventListener('keypress', (e) => {
@@ -355,8 +365,7 @@ document.addEventListener('keydown', handleKeyDown);
 canvas.addEventListener('dblclick', handleDoubleClick);
 canvas.addEventListener('contextmenu', handleRightClick);
 
-function handleImageUpload(e) {
-    const file = e.target.files[0];
+function handleImageUpload(file) {
     if (!file) return;
     console.log('File selected:', file);
 
@@ -1367,6 +1376,51 @@ async function chooseFolderLocation() {
     }
 }
 
+async function chooseImageFile() {
+    await chooseFile(imageUpload, [{
+        description: 'Images',
+        accept: {
+            'image/jpeg': ['.jpg', '.jpeg'],
+            'image/png': ['.png']
+        }
+    }]);
+}
+
+async function chooseProjectFile() {
+    await chooseFile(fileUpload, [{
+        description: 'Airwars Evidence files',
+        accept: {
+            'application/zip': ['.awe']
+        }
+    }]);
+}
+
+async function chooseFile(input, types) {
+    if (typeof window.showOpenFilePicker !== 'function') {
+        input.click();
+        return;
+    }
+
+    try {
+        const options = { types };
+        if (selectedFolderHandle) {
+            options.startIn = selectedFolderHandle;
+        }
+        const [fileHandle] = await window.showOpenFilePicker(options);
+        const file = await fileHandle.getFile();
+
+        if (input === imageUpload) {
+            handleImageUpload(file);
+        } else {
+            await handleFileUpload(file);
+        }
+    } catch (err) {
+        if (err.name !== 'AbortError') {
+            alert('Error selecting file: ' + err.message);
+        }
+    }
+}
+
 async function restoreFolderHandle() {
     try {
         const handle = await loadFolderHandleFromDB();
@@ -1504,12 +1558,12 @@ function handleKeyDown(e) {
     } else if (shift && key === 's') {
         e.preventDefault();
         downloadEditFile();
-    } else if (key === 'n') {
-        e.preventDefault();
-        imageUpload.click();
     } else if (shift && key === 'n') {
         e.preventDefault();
-        fileUpload.click();
+        chooseProjectFile();
+    } else if (key === 'n') {
+        e.preventDefault();
+        chooseImageFile();
     } else if (!ctrl && !shift) {
         // Tool shortcuts
         switch (key) {
@@ -1609,8 +1663,7 @@ function downloadBlob(blob, filename) {
     URL.revokeObjectURL(url);
 }
 
-async function handleFileUpload(event) {
-    const file = event.target.files[0];
+async function handleFileUpload(file) {
     if (!file) return;
 
     try {
@@ -1688,9 +1741,6 @@ async function handleFileUpload(event) {
         alert('Error loading file: ' + err.message);
         console.error(err);
     }
-    
-    // Reset file input
-    event.target.value = '';
 }
 
 function loadStoredValues() {

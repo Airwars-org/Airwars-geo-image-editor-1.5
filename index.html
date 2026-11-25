@@ -14,13 +14,15 @@
         
         <div class="controls">
             <div class="control-group">
-                <label for="fileUpload">Open File:</label>
-                <input type="file" id="fileUpload" accept=".awe" />
+                <label>Open File:</label>
+                <input type="file" id="fileUpload" accept=".awe" hidden />
+                <button id="openFileBtn" class="tool-btn" type="button">Open File</button>
             </div>
 
             <div class="control-group">
-                <label for="imageUpload">Upload Image (JPEG or PNG):</label>
-                <input type="file" id="imageUpload" accept=".jpg,.jpeg,.png,image/jpeg,image/png" />
+                <label>Upload Image (JPEG or PNG):</label>
+                <input type="file" id="imageUpload" accept=".jpg,.jpeg,.png,image/jpeg,image/png" hidden />
+                <button id="uploadImageBtn" class="tool-btn" type="button">Upload Image</button>
             </div>
 
             <div class="control-group">
