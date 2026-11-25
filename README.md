@@ -7,7 +7,7 @@ A web-based image annotation tool for creating and editing evidence files with r
 - Line and lables are smaller
 - Option to rotate rectangles in the Satellite Image mode
 - Rectangle lables can be added on top and bottom
-- The image resizing is adjusted ot the Airwars website
+- The image resizing is adjusted to the Airwars website
 - Sorted out a few bugs
 
 ## Features
