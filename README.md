@@ -3,7 +3,7 @@
 A web-based image annotation tool for creating and editing evidence files with rectangles, polygons, labels, and exact location markers.
 
 ## New features
-- Ctrl+z option added
+- Undo and Redo options added with Ctrl+z and Ctrl+Shift+z
 - Line and lables are smaller
 - Option to rotate rectangles in the Satellite Image mode
 - Rectangle lables can be added on top and bottom
